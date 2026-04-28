@@ -2,9 +2,12 @@ using Sandbox;
 
 public sealed class CustomInputComp : Component
 {
+	DebuggerComponent dbg;
 	public GameObject ViewObject { get; set; }
 	protected override void OnStart()
 	{
+		//dbg = Scene.GetAll<DebuggerComponent>().FirstOrDefault();
+		dbg = GameObject.Components.Get<DebuggerComponent>();
 		Log.Info("----- Started!");
 	}
 
@@ -14,6 +17,34 @@ public sealed class CustomInputComp : Component
 		if (Input.Pressed("attack1")) Log.Info("Click");
 		
 		// if ( Input.Keyboard.Down( "F" ) )
+
+
+		if ( Input.Keyboard.Pressed( "R" ) )
+		{
+			var cam = Scene.Camera;
+			var tr = cam.GameObject.Transform;
+
+#pragma warning disable CS0618
+			var start = tr.Position;
+			var dir   = tr.Rotation.Forward;
+#pragma warning restore CS0618
+			
+			//var dbg = Scene.GetAll<DebuggerComponent>().FirstOrDefault();
+
+			var end = start + dir * traceDist;
+			dbg?.Line( start, end, Color.Green, 2f );
+		}
+
+		if ( Input.Keyboard.Pressed( "E" ) )
+		{
+#pragma warning disable CS0618
+			var tr = GameObject.Transform;
+			var start = tr.Position;
+			var end   = start + tr.Rotation.Forward * 500f;
+#pragma warning restore CS0618
+
+			DebugDrawUtil.Line(start, end, Color.Green, 2f);
+		}
 		if ( Input.Keyboard.Pressed( "F" ) )
 		{
 			Log.Info( "F is down!" );
