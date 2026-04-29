@@ -4,6 +4,10 @@ public sealed class CustomInputComp : Component
 {
 	DebuggerComponent dbg;
 	public GameObject ViewObject { get; set; }
+	
+	const float traceDist = 500f;
+	const float debugTime = 2;
+	const float spherRadius = 25f;
 	protected override void OnStart()
 	{
 		//dbg = Scene.GetAll<DebuggerComponent>().FirstOrDefault();
@@ -15,40 +19,19 @@ public sealed class CustomInputComp : Component
 	{
 		if (Input.Pressed("jump")) Log.Info("Jump");
 		if (Input.Pressed("attack1")) Log.Info("Click");
-		
-		// if ( Input.Keyboard.Down( "F" ) )
 
-
-		if ( Input.Keyboard.Pressed( "R" ) )
-		{
-			var cam = Scene.Camera;
-			var tr = cam.GameObject.Transform;
-
-#pragma warning disable CS0618
-			var start = tr.Position;
-			var dir   = tr.Rotation.Forward;
-#pragma warning restore CS0618
-			
-			//var dbg = Scene.GetAll<DebuggerComponent>().FirstOrDefault();
-
-			var end = start + dir * traceDist;
-			dbg?.Line( start, end, Color.Green, 2f );
-		}
 
 		if ( Input.Keyboard.Pressed( "E" ) )
 		{
-#pragma warning disable CS0618
-			var tr = GameObject.Transform;
-			var start = tr.Position;
-			var end   = start + tr.Rotation.Forward * 500f;
-#pragma warning restore CS0618
-
-			DebugDrawUtil.Line(start, end, Color.Green, 2f);
+			DoSphereTraceMulti();
 		}
+
+
 		if ( Input.Keyboard.Pressed( "F" ) )
 		{
 			Log.Info( "F is down!" );
-			CheckNearby();
+			
+			DoSphereTraceOnce();
 		}
 
 		if (!Network.IsOwner) return;
@@ -56,14 +39,32 @@ public sealed class CustomInputComp : Component
 
 	}
 	
-	public void CheckNearby()
+	public void DoSphereTraceMulti()
 	{
-		DoSphereTrace();
+		var cam = Scene.Camera;
+		var tr = cam.GameObject.Transform;
+
+#pragma warning disable CS0618
+		var start = tr.Position;
+		var dir   = tr.Rotation.Forward;
+#pragma warning restore CS0618
+		
+		//var start = GameObject.Transform.Position;
+		var end = start + dir * traceDist;
+		var hits = Scene.Trace
+			.Sphere(spherRadius, start, end)
+			.IgnoreGameObjectHierarchy(GameObject)
+			.RunAll();
+
+		
+		dbg.Sphere(end, spherRadius, Color.Red, 2f);
+		foreach (var hit in hits)
+		{
+			Log.Info(hit.GameObject.Name);
+		}
 	}
-	const float traceDist = 500f;
-	const float debugTime = 2;
-	const float spherRadius = 25f;
-	public void DoSphereTrace()
+	
+	public void DoSphereTraceOnce()
 	{
 		var cam = Scene.Camera;
 		var tr = cam.GameObject.Transform;
@@ -85,6 +86,7 @@ public sealed class CustomInputComp : Component
 			Log.Info($"Hit: {trace.GameObject.Name}");
 		}
 		
+		dbg.Trace(start, end, spherRadius, 2f);
 		DebugOverlay.Sphere(new Sphere(end, spherRadius), trace.Hit ? Color.Red : Color.Green, debugTime);
 		DebugOverlay.Line(start, end, Color.Green, debugTime);
 		DebugOverlay.Sphere(new Sphere(start, spherRadius), Color.Blue, debugTime);
