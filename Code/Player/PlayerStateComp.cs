@@ -19,8 +19,12 @@ public sealed class PlayerStateComp : Component
 		
 		Log.Info("Player HP is now: " + newValue);
 	}
+	protected override void OnStart()
+	{
+		var citizen = Components.Get<Dresser>();
+		citizen.Randomize();
+	}
 	protected override void OnUpdate()
 	{
-
 	}
 }
