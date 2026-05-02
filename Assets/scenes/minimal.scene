@@ -664,10 +664,10 @@
       }
     },
     {
-      "__guid": "d1d3ada2-3cd3-4a89-bfa7-a7ecfbefab1b",
+      "__guid": "586f5a2d-3bf2-45b4-872b-7b3581a6050c",
       "__version": 2,
       "Flags": 0,
-      "Name": "GameManager",
+      "Name": "LobbyManager",
       "Position": "-74.5500336,101.501656,2.0037384",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
@@ -680,8 +680,8 @@
       "OwnerTransfer": 1,
       "Components": [
         {
-          "__type": "CGameManager",
-          "__guid": "5983b941-0760-4a97-bfcd-488762d3cbd3",
+          "__type": "LobbyManager",
+          "__guid": "af6b3bb2-9f30-46d9-b73b-2a0ed464e6cd",
           "__enabled": true,
           "Flags": 0,
           "OnComponentDestroy": null,
@@ -689,11 +689,7 @@
           "OnComponentEnabled": null,
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
-          "OnComponentUpdate": null,
-          "PlayerPrefab": {
-            "_type": "gameobject",
-            "prefab": "prefabs/player controller.prefab"
-          }
+          "OnComponentUpdate": null
         }
       ],
       "Children": []
@@ -721,13 +717,18 @@
       "CustomBounds": false
     },
     "GameObjectSystems": {
-      "Sandbox.MovieMaker.MovieRecorderSystem": {
-        "DisableClientRecording": false
+      "Sandbox.Clutter.ClutterGridSystem": {
+        "Storage": {
+          "$blob": "ec09a799-32ae-43eb-84a8-22ca85dfa9eb"
+        }
       },
       "Sandbox.SelectionSetsSystem": {
         "Data": {
           "SelectionSets": []
         }
+      },
+      "Sandbox.MovieMaker.MovieRecorderSystem": {
+        "DisableClientRecording": false
       }
     }
   },

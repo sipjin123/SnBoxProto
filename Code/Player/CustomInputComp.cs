@@ -1,5 +1,5 @@
 using Sandbox;
-
+using Sandbox.Network;
 public sealed class CustomInputComp : Component
 {
 	DebuggerComponent dbg;
@@ -55,8 +55,17 @@ public sealed class CustomInputComp : Component
 			DoSphereTraceOnce();
 		}
 
-		if (!Network.IsOwner) return;
-		Log.Info("Tick");
+
+		if ( Input.Keyboard.Pressed( "G" ) )
+		{
+
+		}
+
+		if ( Input.Keyboard.Pressed( "H" ) )
+		{
+		}
+		//if (!Network.IsOwner) return;
+		//Log.Info("Tick");
 
 	}
 	
