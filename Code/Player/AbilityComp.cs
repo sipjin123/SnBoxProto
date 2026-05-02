@@ -37,14 +37,15 @@ public sealed class AbilityComp : Component
     	bullet.Network.TakeOwnership();
 
 		var refVar = bullet.Components.Get<DamageBox>();
+		//var refVar = bullet.GetComponent<DamageBox>();
 		if (refVar != null){
-		refVar.PlayerId = NewPlayerId;
+			refVar.PlayerId = NewPlayerId;
 
-		Log.Info( "Success Projectile: " + NewPlayerId );
-} else{
+			Log.Info( "Success Projectile: " + NewPlayerId );
+		} else{
 
-		Log.Info( "FAILED Projectile" );
-}
+			Log.Info( "FAILED Projectile" );
+		}
 		
 	}
 }
