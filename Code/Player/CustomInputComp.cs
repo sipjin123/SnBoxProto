@@ -1,6 +1,6 @@
 using Sandbox;
 using Sandbox.Network;
-public sealed class CustomInputComp : Component
+public sealed class CustomInputComp : Component, IPlayer
 {
 	DebuggerComponent dbg;
 	private ScreenLoggerComp ScreenLoggerComp;
@@ -28,10 +28,13 @@ public sealed class CustomInputComp : Component
 
 	protected override void OnUpdate()
 	{
-		if (Input.Pressed("jump")) Log.Info("Jump");
-		if (Input.Pressed("attack1")) Log.Info("Click");
+		//if (Input.Pressed("jump")) Log.Info("Jump");
+		//if (Input.Pressed("attack1")) Log.Info("Click");
 
 
+		if (!Network.IsOwner) return;
+		
+		
 		if (Input.Keyboard.Pressed("Q"))
 		{
 			Log.Info("Send msg to server");
@@ -59,11 +62,21 @@ public sealed class CustomInputComp : Component
 
 		if ( Input.Keyboard.Pressed( "G" ) )
 		{
-
+			NetMsgComp.RpcSendToServerNew();
 		}
 
 		if ( Input.Keyboard.Pressed( "H" ) )
 		{
+			NetMsgComp.RpcSendToProxy();
+		}
+		
+		if ( Input.Keyboard.Pressed( "J" ) )
+		{
+			NetMsgComp.RpcSendToOnlyHOST();
+		}
+		if ( Input.Keyboard.Pressed( "I" ) )
+		{
+			NetMsgComp.RpcSendToNOTProxy();
 		}
 		//if (!Network.IsOwner) return;
 		//Log.Info("Tick");

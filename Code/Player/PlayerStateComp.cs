@@ -7,7 +7,7 @@ public sealed class PlayerStateComp : Component
 		Pistol,
 		Rifle
 	}
-
+	[Sync] public int PlayerId { get; set; }
 	[Sync] public NetList<int> List { get; set; } = new();
 	[Sync] public NetDictionary<AmmoCount,int> Dictionary { get; set; } = new();
 	[Sync] public int Kills { get; set; }

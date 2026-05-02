@@ -11,6 +11,9 @@ public sealed class TriggerHandlerComp : Component, Component.ITriggerListener
 
 	public void OnTriggerEnter(Collider other)
 	{
+		if ( other.Components.Get<IActor>() == null)
+			return;
+		
 		if ( IsProxy )
 		{
 			Log.Info($"Server Collide Enter: {other.GameObject.Name}");
@@ -24,6 +27,9 @@ public sealed class TriggerHandlerComp : Component, Component.ITriggerListener
 
 	public void OnTriggerExit(Collider other)
 	{
+		if ( other.Components.Get<IActor>() == null)
+			return;
+		
 		if ( IsProxy )
 		{
 			Log.Info($"Server Collide Exit: {other.GameObject.Name}");

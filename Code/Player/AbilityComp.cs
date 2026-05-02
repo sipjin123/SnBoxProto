@@ -13,20 +13,38 @@ public sealed class AbilityComp : Component
 		var start = tr.Position;
 		var dir   = tr.Rotation.Forward;
 		#pragma warning restore CS0618
-		ShootRequest(start, dir);
+
+		var NewPlayerId = Components.Get<PlayerStateComp>().PlayerId;
+		ShootRequest(NewPlayerId, start, dir);
 	}
 
 	[Rpc.Broadcast]
-	void ShootRequest(Vector3 SourceLoc, Vector3 SourceDir)
+	void ShootRequest(int NewPlayerId, Vector3 SourceLoc, Vector3 SourceDir)
 	{
     	if (IsProxy) return; // 🔥 server only
 
 		Log.Info( "Only server can Spawn Projectile" );
-  		SpawnProjectile(SourceLoc, SourceDir);
+  		SpawnProjectile(NewPlayerId, SourceLoc, SourceDir);
 	}
 
-	void SpawnProjectile(Vector3 SourceLoc, Vector3 SourceDir)
+	void SpawnProjectile(int NewPlayerId, Vector3 SourceLoc, Vector3 SourceDir)
 	{
+
+		Log.Info( "Spawning Projectile now" );
+		//GameObject bullet = GenericProjectile.Clone(TransformUtil.GetPointInFront(SourceLoc, SourceDir, 500f));
 		GameObject bullet = GenericProjectile.Clone(TransformUtil.GetPointInFront(SourceLoc, SourceDir, 500f));
+		bullet.NetworkSpawn();
+    	bullet.Network.TakeOwnership();
+
+		var refVar = bullet.Components.Get<DamageBox>();
+		if (refVar != null){
+		refVar.PlayerId = NewPlayerId;
+
+		Log.Info( "Success Projectile: " + NewPlayerId );
+} else{
+
+		Log.Info( "FAILED Projectile" );
+}
+		
 	}
 }
