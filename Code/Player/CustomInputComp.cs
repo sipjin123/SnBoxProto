@@ -15,12 +15,19 @@ public sealed class CustomInputComp : Component
 		Log.Info("----- Started!");
 	}
 
+	[Property] 
+	public GameObject prefabToSpawn;
 	protected override void OnUpdate()
 	{
 		if (Input.Pressed("jump")) Log.Info("Jump");
 		if (Input.Pressed("attack1")) Log.Info("Click");
 
 
+		if ( Input.Keyboard.Pressed( "R" ) )
+		{
+			//var obj = GameObject.Clone(prefabToSpawn, GetPointInFront(100), GameObject.Transform.Rotation);
+			GameObject bullet = prefabToSpawn.Clone( GetPointInFront(200f) );
+		}
 		if ( Input.Keyboard.Pressed( "E" ) )
 		{
 			DoSphereTraceMulti();
@@ -91,4 +98,18 @@ public sealed class CustomInputComp : Component
 		DebugOverlay.Line(start, end, Color.Green, debugTime);
 		DebugOverlay.Sphere(new Sphere(start, spherRadius), Color.Blue, debugTime);
 	}
+	
+	public Vector3 GetPointInFront(float distance = 100f)
+	{
+		
+		var cam = Scene.Camera;
+		var tr = cam.GameObject.Transform;
+		
+#pragma warning disable CS0618
+		var start = tr.Position;
+		var dir   = tr.Rotation.Forward;
+		
+		return start + dir * traceDist;
+#pragma warning restore CS0618
+	} 
 }
