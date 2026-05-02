@@ -3,8 +3,13 @@ using Sandbox;
 public sealed class CustomInputComp : Component
 {
 	DebuggerComponent dbg;
+	private ScreenLoggerComp ScreenLoggerComp;
+	private NetMsgComp NetMsgComp;
+	private AbilityComp AbilityComp;
 	public GameObject ViewObject { get; set; }
 	
+	[Property] 
+	public GameObject prefabToSpawn;
 	const float traceDist = 500f;
 	const float debugTime = 2;
 	const float spherRadius = 25f;
@@ -12,17 +17,26 @@ public sealed class CustomInputComp : Component
 	{
 		//dbg = Scene.GetAll<DebuggerComponent>().FirstOrDefault();
 		dbg = GameObject.Components.Get<DebuggerComponent>();
+		NetMsgComp = GameObject.Components.Get<NetMsgComp>();
+		ScreenLoggerComp = GameObject.Components.Get<ScreenLoggerComp>();
+		
+		AbilityComp = GameObject.Components.Get<AbilityComp>();
+		
 		Log.Info("----- Started!");
 	}
 
-	[Property] 
-	public GameObject prefabToSpawn;
 	protected override void OnUpdate()
 	{
 		if (Input.Pressed("jump")) Log.Info("Jump");
 		if (Input.Pressed("attack1")) Log.Info("Click");
 
 
+		if (Input.Keyboard.Pressed("Q"))
+		{
+			Log.Info("Send msg to server");
+			ScreenLoggerComp.Print("aAaa");
+			NetMsgComp.SendRequestToServer();
+		}
 		if ( Input.Keyboard.Pressed( "R" ) )
 		{
 			//var obj = GameObject.Clone(prefabToSpawn, GetPointInFront(100), GameObject.Transform.Rotation);
