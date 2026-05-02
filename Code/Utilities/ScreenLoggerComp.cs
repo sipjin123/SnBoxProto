@@ -9,7 +9,7 @@ public sealed class ScreenLoggerComp : Component
 
 		foreach (var msg in Messages)
 		{
-			DebugOverlay.Text(new Vector2( 50, 150 ), msg);
+			DebugOverlay.Text(new Vector2( 50, 500 ), msg);
 			y += 20;
 		}
 	}

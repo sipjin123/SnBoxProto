@@ -8,6 +8,7 @@ public sealed class NetMsgComp : Component
 		RpcSendToServer();
 	}
 
+//[Rpc.Broadcast( NetFlags.Unreliable | NetFlag.OwnerOnly )]
 	[Rpc.Broadcast] // goes to server when called from client
 	void RpcSendToServer()
 	{

@@ -297,6 +297,10 @@
         "__guid": "12d0264a-498f-4ff9-ad01-3fd18597b560",
         "__enabled": true,
         "Flags": 0,
+        "GenericProjectile": {
+          "_type": "gameobject",
+          "prefab": "prefabs/spawnableobj.prefab"
+        },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -319,6 +323,18 @@
       {
         "__type": "ScreenLoggerComp",
         "__guid": "3dc211cc-59e9-4a29-aa65-71801a1507a4",
+        "__enabled": true,
+        "Flags": 0,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
+      },
+      {
+        "__type": "PlayerStateComp",
+        "__guid": "ffd258ed-242c-450b-afc0-02b2ed9f1a12",
         "__enabled": true,
         "Flags": 0,
         "OnComponentDestroy": null,

@@ -5,6 +5,7 @@ public sealed class CustomInputComp : Component
 	DebuggerComponent dbg;
 	private ScreenLoggerComp ScreenLoggerComp;
 	private NetMsgComp NetMsgComp;
+	private PlayerStateComp PlayerStateComp;
 	private AbilityComp AbilityComp;
 	public GameObject ViewObject { get; set; }
 	
@@ -19,7 +20,7 @@ public sealed class CustomInputComp : Component
 		dbg = GameObject.Components.Get<DebuggerComponent>();
 		NetMsgComp = GameObject.Components.Get<NetMsgComp>();
 		ScreenLoggerComp = GameObject.Components.Get<ScreenLoggerComp>();
-		
+		PlayerStateComp = GameObject.Components.Get<PlayerStateComp>();
 		AbilityComp = GameObject.Components.Get<AbilityComp>();
 		
 		Log.Info("----- Started!");
@@ -39,8 +40,8 @@ public sealed class CustomInputComp : Component
 		}
 		if ( Input.Keyboard.Pressed( "R" ) )
 		{
-			//var obj = GameObject.Clone(prefabToSpawn, GetPointInFront(100), GameObject.Transform.Rotation);
-			GameObject bullet = prefabToSpawn.Clone( GetPointInFront(200f) );
+			//GameObject bullet = prefabToSpawn.Clone( GetPointInFront(200f) );
+			AbilityComp.ProcessPlayerShoot();
 		}
 		if ( Input.Keyboard.Pressed( "E" ) )
 		{

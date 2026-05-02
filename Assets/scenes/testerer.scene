@@ -95,7 +95,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "femme_pyro",
-      "Position": "85.7016296,23.517746,0.0475512594",
+      "Position": "1141.13391,23.517746,0.0475512594",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -636,7 +636,8 @@
         "b26eff37-fd38-431d-992e-a06c09cf5ba1": "bd4f056b-7e90-4ed8-9817-969d4cb9e241",
         "38452e93-e2fd-480b-91f3-558395231e72": "0ad4cc76-1dee-4ae8-8c69-27edf689c131",
         "43cc0cb6-bebc-4060-9784-b7f5f5b8b702": "5789dc61-c76f-4dae-9ac4-b40c5a1d55ca",
-        "f806f09e-8eaa-47cc-918f-c2ca7b5d927d": "14ee0472-5264-425d-a8b4-37516e9ff1ea"
+        "f806f09e-8eaa-47cc-918f-c2ca7b5d927d": "14ee0472-5264-425d-a8b4-37516e9ff1ea",
+        "d14f3d67-5a4f-4da7-8f80-f6acfeaedb1b": "5900fec4-f14f-4b1a-99b6-0703f711213b"
       }
     },
     {
