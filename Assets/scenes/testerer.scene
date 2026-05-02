@@ -91,7 +91,7 @@
       "Children": []
     },
     {
-      "__guid": "570faf2c-9668-4728-914e-dc7f691762f6",
+      "__guid": "48f7125e-c994-4d0e-9961-0fb4acb818fa",
       "__version": 2,
       "__Prefab": "prefabs/myplaya.prefab",
       "__PrefabInstancePatch": {
@@ -101,7 +101,7 @@
         "MovedObjects": []
       },
       "__PrefabIdToInstanceId": {
-        "2dc08f37-2ac7-406d-b51c-6e05576f8b91": "570faf2c-9668-4728-914e-dc7f691762f6"
+        "3ff0efa9-89ec-45a0-8c01-d5023ff41e92": "48f7125e-c994-4d0e-9961-0fb4acb818fa"
       }
     },
     {
@@ -403,7 +403,10 @@
         "c2f0a558-0858-4872-a620-ddfe019ec7e9": "aa91317c-c9a6-49fb-ac4d-614eed691055",
         "91e1af05-6ef0-4d09-ae96-9af4e53f323d": "6e027c5c-ab49-4714-92be-e0f3c8da487d",
         "cef0a832-de1a-4d92-8747-40d3dd9b3b65": "eb670991-f658-49ba-a808-005112e28ffc",
-        "68cd04f9-0bfb-41c9-9215-f2e51de98839": "fefec18d-465d-4a96-8757-7e4eee7e6269"
+        "68cd04f9-0bfb-41c9-9215-f2e51de98839": "fefec18d-465d-4a96-8757-7e4eee7e6269",
+        "12d0264a-498f-4ff9-ad01-3fd18597b560": "1c7a648e-5b6a-4fbc-9c71-bc9d6ae15676",
+        "c75b2482-abfc-4143-ab93-23db6a997faa": "1c91b608-ae9c-4ece-88a5-124af097eb50",
+        "3dc211cc-59e9-4a29-aa65-71801a1507a4": "7c81f594-ed99-411e-b38c-e1a55b0af3f0"
       }
     },
     {
@@ -713,18 +716,18 @@
       "CustomBounds": false
     },
     "GameObjectSystems": {
-      "Sandbox.Clutter.ClutterGridSystem": {
-        "Storage": {
-          "$blob": "337d1d9c-4e6e-456c-a9ee-5e16dd85c280"
-        }
+      "Sandbox.MovieMaker.MovieRecorderSystem": {
+        "DisableClientRecording": false
       },
       "Sandbox.SelectionSetsSystem": {
         "Data": {
           "SelectionSets": []
         }
       },
-      "Sandbox.MovieMaker.MovieRecorderSystem": {
-        "DisableClientRecording": false
+      "Sandbox.Clutter.ClutterGridSystem": {
+        "Storage": {
+          "$blob": "337d1d9c-4e6e-456c-a9ee-5e16dd85c280"
+        }
       }
     }
   },

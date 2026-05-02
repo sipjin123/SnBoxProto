@@ -1,0 +1,22 @@
+{
+  "publish": {
+    "Enabled": true,
+    "ProjectConfig": {
+      "Title": "Testerer",
+      "Type": "map",
+      "Org": "bontagames",
+      "Ident": "testerer",
+      "Schema": 0,
+      "IncludeSourceFiles": false,
+      "Resources": null,
+      "PackageReferences": [],
+      "EditorReferences": null,
+      "Mounts": null,
+      "IsStandaloneOnly": false,
+      "Metadata": {
+        "SingleAssetSource": "scenes/testerer.scene",
+        "ParentPackage": "bontagames.protobox"
+      }
+    }
+  }
+}
