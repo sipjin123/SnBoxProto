@@ -11,6 +11,8 @@ public sealed class CustomInputComp : Component, IPlayer
 	[Property] 
 	public GameObject PlayerStatHUD;
 	[Property] 
+	public GameObject UnitHUD;
+	[Property] 
 	public GameObject prefabToSpawn;
 	const float traceDist = 500f;
 	const float debugTime = 2;
@@ -27,15 +29,23 @@ public sealed class CustomInputComp : Component, IPlayer
 		Log.Info("----- Started!");
 
 
-		if (!Network.IsOwner) return;
+			GameObject WorldHudObj = UnitHUD.Clone();
+			WorldHudObj.SetParent(GameObject); // 👈 parent to caller
+			WorldHudObj.Transform.LocalPosition = new Vector3(0, 0, 70f);
+			WorldHudObj.Components.Get<UnitHP>().player = PlayerStateComp;
 
-		bool ShouldSpawnUI = true;
-		if (ShouldSpawnUI)
+		if (!Network.IsOwner)
 		{
-
-			Log.Info("----- Spawning my own HUD!");
-			GameObject HudObj = PlayerStatHUD.Clone();
-			HudObj.Components.Get<RazorBinderOBJ>().BindObjToRazor(GameObject.Components.Get<PlayerStateComp>());
+		}
+		else
+		{
+			bool ShouldSpawnUI = true;
+			if (ShouldSpawnUI)
+			{
+				Log.Info("----- Spawning my own HUD!");
+				GameObject HudObj = PlayerStatHUD.Clone();
+				HudObj.Components.Get<RazorBinderOBJ>().BindObjToRazor(GameObject.Components.Get<PlayerStateComp>());
+			}
 		}
 	}
 

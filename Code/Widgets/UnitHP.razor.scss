@@ -1,0 +1,32 @@
+UnitHP
+{
+	.title
+	{
+		font-size: 25px;
+		font-family: Poppins;
+		color: #fff;
+	}
+	.HealthbarRoot
+	{
+		transform: translateY(-200px); // 🔥 THIS WORKS
+	}
+	.Healthbar
+	{
+		position: absolute;
+		bottom: 30px;
+		left: 0px;
+		.Background{
+			width: 300px;
+			height: 25px;
+			padding: 2px;
+		}
+		.Inner{
+			background-color: aqua;
+			flex-grow: 1;
+			.Fill{
+				height: 100%;
+				background-color: orange;
+			}
+		}
+	}
+}

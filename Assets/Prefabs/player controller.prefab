@@ -176,6 +176,10 @@
         "prefabToSpawn": {
           "_type": "gameobject",
           "prefab": "prefabs/spawnableobj.prefab"
+        },
+        "UnitHUD": {
+          "_type": "gameobject",
+          "prefab": "prefabs/unithppref.prefab"
         }
       },
       {

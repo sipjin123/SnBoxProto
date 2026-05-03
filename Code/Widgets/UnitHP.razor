@@ -1,0 +1,28 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+	<div class="HealthbarRoot">
+	<div class="Healthbar">
+		<div class="Background">
+			<div class="Inner">
+				<div class="Fill" style="width: @(player.Health / 100 * 100)%"></div>
+			</div>
+		</div>
+	</div>
+	</div>
+</root>
+
+@code
+{
+	[Property] public PlayerStateComp player;
+	
+	protected override int BuildHash()
+	{
+		return System.HashCode.Combine(player?.Health);
+		//return System.HashCode.Combine(player != null ? player.Health : Time.Now);
+	}
+
+}
