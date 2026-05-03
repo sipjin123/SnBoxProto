@@ -5,14 +5,25 @@
 
 <root>
 	<div class="HealthbarRoot">
-	<div class="Healthbar">
-		<div class="Background">
-			<div class="Inner">
-				<div class="Fill" style="width: @(player.Health / 100 * 100)%"></div>
+		<div class="Healthbar">
+			<div class="Background">
+				<div class="Inner">
+					<div class="Fill" style="width: @((player.Health / 100) * 100)%"></div>
+					<div class="Text"> @(player.PlayerId) </div>
+				</div>
 			</div>
 		</div>
 	</div>
-	</div>
+	
+		<div class="Infobar">
+    	<div class="Background">
+    		<div class="Inner">
+    			<div class="Text"> @(player.PlayerId) </div>
+    			<div class="Text"> :: T ::  </div>
+    			<div class="Text"> @(player.Health) </div>
+    	</div>
+    	</div>
+    	</div>
 </root>
 
 @code

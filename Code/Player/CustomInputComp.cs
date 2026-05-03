@@ -31,7 +31,7 @@ public sealed class CustomInputComp : Component, IPlayer
 
 			GameObject WorldHudObj = UnitHUD.Clone();
 			WorldHudObj.SetParent(GameObject); // 👈 parent to caller
-			WorldHudObj.Transform.LocalPosition = new Vector3(0, 0, 70f);
+			WorldHudObj.LocalPosition = new Vector3(0, 0, 70f);
 			WorldHudObj.Components.Get<UnitHP>().player = PlayerStateComp;
 
 		if (!Network.IsOwner)
