@@ -27,15 +27,16 @@ public sealed class CustomInputComp : Component, IPlayer
 		Log.Info("----- Started!");
 
 
+		if (!Network.IsOwner) return;
+
 		bool ShouldSpawnUI = true;
 		if (ShouldSpawnUI)
 		{
+
+			Log.Info("----- Spawning my own HUD!");
 			GameObject HudObj = PlayerStatHUD.Clone();
-			HudObj.Components.Get<RazorBinderOBJ>().BindObjToRazor(Components.Get<PlayerStateComp>());
+			HudObj.Components.Get<RazorBinderOBJ>().BindObjToRazor(GameObject.Components.Get<PlayerStateComp>());
 		}
-		//var NewHUD = new PlayerStatHUD();
-		//NewHUD.Health = 100;
-		//NewHUD.Armor = 50;
 	}
 
 	protected override void OnUpdate()
