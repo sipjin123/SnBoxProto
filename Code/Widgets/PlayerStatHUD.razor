@@ -1,0 +1,30 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+	<div class="Healthbar">
+	<div class="Background">
+		<div class="Inner">
+			<div class="Fill" style="width: @(player.Health / 100 * 100)%"></div>
+	</div>
+	</div>
+	</div>
+</root>
+
+@code
+{
+	// <div class="Fill" style="width: @(player.Health / 100 * 100)%"></div>
+	[Property] public PlayerStateComp player;
+	//public int Health { get; set; } = 100;
+	//public int Armor { get; set; } = 100;
+	//<div class="health">HP: @Health</div>
+	//<div class="armor">Armor: @Armor</div>
+	protected override int BuildHash()
+	{
+		//return System.HashCode.Combine( Health, Armor );
+		//return System.HashCode.Combine( player.Health );
+		return System.HashCode.Combine(player != null ? player.Health : Time.Now);
+	}
+}

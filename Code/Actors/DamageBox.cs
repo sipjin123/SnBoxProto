@@ -13,8 +13,11 @@ public sealed class DamageBox : Component, Component.ITriggerListener, IActor
 		if (myOwner == otherOwner) return;
 		if (!Network.IsOwner) return;
 		{
+			PlayerStateComp otherComp = other.Components.Get<PlayerStateComp>();
 			var owner = GameObject.Network.Owner;
-			Log.Info( $"Server Collide Enter: {other.GameObject.Name} ---  {PlayerId.ToString()} --- {owner.DisplayName} --- {owner.Id} --- {other.Components.Get<PlayerStateComp>().PlayerId.ToString()}");
+			Log.Info( $"Server Collide Enter: {other.GameObject.Name} ---  {PlayerId.ToString()} --- {owner.DisplayName} --- {owner.Id} --- {otherComp.PlayerId.ToString()}");
+			otherComp.ApplyDamageRpc(10f);
+			Destroy();
 		}
 	}
 }

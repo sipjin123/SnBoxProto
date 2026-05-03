@@ -8,7 +8,8 @@ public sealed class CustomInputComp : Component, IPlayer
 	private PlayerStateComp PlayerStateComp;
 	private AbilityComp AbilityComp;
 	public GameObject ViewObject { get; set; }
-	
+	[Property] 
+	public GameObject PlayerStatHUD;
 	[Property] 
 	public GameObject prefabToSpawn;
 	const float traceDist = 500f;
@@ -24,6 +25,17 @@ public sealed class CustomInputComp : Component, IPlayer
 		AbilityComp = GameObject.Components.Get<AbilityComp>();
 		
 		Log.Info("----- Started!");
+
+
+		bool ShouldSpawnUI = true;
+		if (ShouldSpawnUI)
+		{
+			GameObject HudObj = PlayerStatHUD.Clone();
+			HudObj.Components.Get<RazorBinderOBJ>().BindObjToRazor(Components.Get<PlayerStateComp>());
+		}
+		//var NewHUD = new PlayerStatHUD();
+		//NewHUD.Health = 100;
+		//NewHUD.Armor = 50;
 	}
 
 	protected override void OnUpdate()
@@ -77,6 +89,12 @@ public sealed class CustomInputComp : Component, IPlayer
 		if ( Input.Keyboard.Pressed( "I" ) )
 		{
 			NetMsgComp.RpcSendToNOTProxy();
+		}
+
+
+		if ( Input.Keyboard.Pressed( "M" ) )
+		{
+			PlayerStateComp.ApplyDamageRpc(5f);
 		}
 		//if (!Network.IsOwner) return;
 		//Log.Info("Tick");

@@ -1,0 +1,42 @@
+PlayerStatHUD
+{
+	/*
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #444;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	border-radius: 20px;
+	*/
+	.title
+	{
+		font-size: 25px;
+		font-family: Poppins;
+		color: #fff;
+	}
+	
+	.Healthbar
+	{
+		position: absolute;
+		bottom: 30px;
+		left: 32px;
+		.Background{
+			width: 500px;
+			height: 64px;
+			padding: 2px;
+		}
+		.Inner{
+			background-color: aqua;
+			flex-grow: 1;
+			.Fill{
+				height: 100%;
+				background-color: red;
+				
+			}
+		}
+	}
+}

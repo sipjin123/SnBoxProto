@@ -169,6 +169,10 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "PlayerStatHUD": {
+          "_type": "gameobject",
+          "prefab": "prefabs/huder.prefab"
+        },
         "prefabToSpawn": {
           "_type": "gameobject",
           "prefab": "prefabs/spawnableobj.prefab"
