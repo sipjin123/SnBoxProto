@@ -1,5 +1,7 @@
 using Sandbox;
 using Sandbox.Network;
+using Sandbox.Citizen;
+
 public sealed class CustomInputComp : Component, IPlayer
 {
 	DebuggerComponent dbg;
@@ -17,6 +19,8 @@ public sealed class CustomInputComp : Component, IPlayer
 	const float traceDist = 500f;
 	const float debugTime = 2;
 	const float spherRadius = 25f;
+
+	private SkinnedModelRenderer SkinnedModelRenderer;
 	protected override void OnStart()
 	{
 		//dbg = Scene.GetAll<DebuggerComponent>().FirstOrDefault();
@@ -25,7 +29,7 @@ public sealed class CustomInputComp : Component, IPlayer
 		ScreenLoggerComp = GameObject.Components.Get<ScreenLoggerComp>();
 		PlayerStateComp = GameObject.Components.Get<PlayerStateComp>();
 		AbilityComp = GameObject.Components.Get<AbilityComp>();
-		
+		SkinnedModelRenderer = Components.GetInChildren<SkinnedModelRenderer>();
 		Log.Info("----- Started!");
 
 
@@ -47,6 +51,7 @@ public sealed class CustomInputComp : Component, IPlayer
 				HudObj.Components.Get<RazorBinderOBJ>().BindObjToRazor(GameObject.Components.Get<PlayerStateComp>());
 			}
 		}
+		SkinnedModelRenderer.SceneModel.SetAnimParameter( "holdtype", 1 );
 	}
 
 	protected override void OnUpdate()
@@ -66,6 +71,10 @@ public sealed class CustomInputComp : Component, IPlayer
 		}
 		if ( Input.Keyboard.Pressed( "R" ) )
 		{
+			if ( SkinnedModelRenderer != null )
+			{
+				SkinnedModelRenderer.SceneModel?.SetAnimParameter( "b_attack", true );
+			}
 			//GameObject bullet = prefabToSpawn.Clone( GetPointInFront(200f) );
 			AbilityComp.ProcessPlayerShoot();
 		}
