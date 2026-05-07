@@ -672,6 +672,42 @@
         "d322678d-4cd7-44e9-b730-5106b68b7bd3": "ae7e363d-6895-40df-9b6b-0321fe5246e2",
         "fe7dc51f-108f-4f0d-98ca-50b693575311": "5c0430e9-f93e-4b37-8a18-281fd764d1a3"
       }
+    },
+    {
+      "__guid": "af992144-8eaf-494a-a687-615af4ed12c9",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "EnemySpawner",
+      "Position": "0,0,0",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "EnemySpawnerComp",
+          "__guid": "6c5b0a0a-9781-4eec-bf22-be5cc66760d5",
+          "__enabled": true,
+          "Flags": 0,
+          "EnemyPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/gruntpref.prefab"
+          },
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "SpawnInterval": 10
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
@@ -694,9 +730,6 @@
       "CustomBounds": false
     },
     "GameObjectSystems": {
-      "Sandbox.MovieMaker.MovieRecorderSystem": {
-        "DisableClientRecording": false
-      },
       "Sandbox.SelectionSetsSystem": {
         "Data": {
           "SelectionSets": []
@@ -706,6 +739,9 @@
         "Storage": {
           "$blob": "337d1d9c-4e6e-456c-a9ee-5e16dd85c280"
         }
+      },
+      "Sandbox.MovieMaker.MovieRecorderSystem": {
+        "DisableClientRecording": false
       }
     }
   },

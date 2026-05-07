@@ -1,5 +1,5 @@
 using Sandbox;
 
-public interface IPlayer
+public interface IPlayer : IActor
 {
 }
