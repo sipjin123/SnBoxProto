@@ -76,6 +76,7 @@ public sealed class CustomInputComp : Component, IPlayer
 				SkinnedModelRenderer.SceneModel?.SetAnimParameter( "b_attack", true );
 			}
 			//GameObject bullet = prefabToSpawn.Clone( GetPointInFront(200f) );
+			//AbilityComp.ProcessBomb();
 			AbilityComp.ProcessPlayerShoot();
 		}
 		if ( Input.Keyboard.Pressed( "E" ) )

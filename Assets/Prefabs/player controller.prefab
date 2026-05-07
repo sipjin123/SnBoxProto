@@ -305,9 +305,13 @@
         "__guid": "12d0264a-498f-4ff9-ad01-3fd18597b560",
         "__enabled": true,
         "Flags": 0,
-        "GenericProjectile": {
+        "GenericBomb": {
           "_type": "gameobject",
           "prefab": "prefabs/spawnableobj.prefab"
+        },
+        "GenericProjectile": {
+          "_type": "gameobject",
+          "prefab": "prefabs/bullet.prefab"
         },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
