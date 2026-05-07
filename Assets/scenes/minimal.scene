@@ -638,11 +638,11 @@
       "Children": []
     },
     {
-      "__guid": "586f5a2d-3bf2-45b4-872b-7b3581a6050c",
+      "__guid": "feed11ef-3af7-44f9-afb1-13bad3f4349c",
       "__version": 2,
       "Flags": 0,
-      "Name": "LobbyManager",
-      "Position": "-74.5500336,101.501656,2.0037384",
+      "Name": "LobbyManagerNew",
+      "Position": "0,0,0",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -655,7 +655,7 @@
       "Components": [
         {
           "__type": "LobbyManager",
-          "__guid": "af6b3bb2-9f30-46d9-b73b-2a0ed464e6cd",
+          "__guid": "6fe278d3-3423-4920-b83e-f4cdbf42be2a",
           "__enabled": true,
           "Flags": 0,
           "OnComponentDestroy": null,

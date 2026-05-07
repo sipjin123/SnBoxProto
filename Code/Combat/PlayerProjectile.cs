@@ -7,12 +7,12 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 
 	[Property]
 	public float LifeTime { get; set; } = 5f;
-
+	private bool _isActive;
 	[Sync]
 	private Vector3 Direction { get; set; }
 
 	private TimeSince _spawnTime;
-
+    public BulletPoolManager Pool { get; set; }
 	[Sync] public int PlayerId { get; set; }
 	/// <summary>
 	/// Called right after spawning
@@ -20,12 +20,14 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 	public void Fire( Vector3 direction )
 	{
 		Direction = direction.Normal;
+		_spawnTime = 0;
+		_isActive = true;
+		// Ensure this object replicates
+		Network.AssignOwnership( Connection.Host );
+		GameObject.Enabled = true;
 	}
 	protected override void OnStart()
 	{
-		// Ensure this object replicates
-		Network.AssignOwnership( Connection.Host );
-		_spawnTime = 0;
 		base.OnStart();
 	}	
 	protected override void OnUpdate()
@@ -34,14 +36,16 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 		// Server authoritative movement
 		if ( !Networking.IsHost )
 			return;
+		if ( !_isActive )
+			return;
 
 		Transform.Position += Direction * Speed * Time.Delta;
-
+	
 		// Simple lifetime cleanup
 		if ( _spawnTime >= LifeTime )
 		{
 			//Log.Info($"End Life: {GameObject.Name}");
-			GameObject.Destroy();
+			RePool();
 		}
 	}
 
@@ -49,8 +53,7 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 	{
 		if ( other.Components.Get<IPlayer>() == null )
 		{
-
-			GameObject.Destroy();
+			//RePool();
 			return;
 		}
 
@@ -66,7 +69,7 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 			otherComp.ApplyDamageRpc(10f);
 			Destroy();
 		}
-		GameObject.Destroy();
+		RePool();
 		/*
 		if ( !Networking.IsHost )
 			return;
@@ -74,5 +77,14 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 		Log.Info($"Hit: {other.GameObject.Name}");
 
 		;*/
+	}
+
+	void RePool()
+	{
+		if ( !Networking.IsHost )
+			return;
+		_isActive = false;
+		GameObject.Enabled = false;
+		Pool?.Return( this );
 	}
 }

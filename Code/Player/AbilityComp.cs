@@ -19,12 +19,26 @@ public sealed class AbilityComp : Component
 	}
 
 	[Rpc.Broadcast]
-	void ShootRequest(int NewPlayerId, Vector3 SourceLoc, Rotation SourceRot)
+	void ShootRequest( int NewPlayerId, Vector3 SourceLoc, Rotation SourceRot )
 	{
-    	if (IsProxy) return; // 🔥 server only
-
-		//Log.Info( "Only server can Spawn Projectile" );
-  		SpawnProjectile(NewPlayerId, SourceLoc, SourceRot);
+		bool UseLegacy = false;
+		if ( UseLegacy )
+		{
+			if ( IsProxy ) return; // 🔥 server only
+			SpawnProjectile( NewPlayerId, SourceLoc, SourceRot );
+		}
+		else
+		{
+			if ( Networking.IsHost )
+			{
+				var tr = Scene.Camera.GameObject.Transform;
+				BulletPoolManager.Instance.Get(
+					GameObject.Transform.Position + new Vector3(0,0,30f),
+					tr.Rotation,
+					tr.Rotation.Forward
+				);
+			}
+		}
 	}
 
 	void SpawnProjectile(int NewPlayerId, Vector3 SourceLoc, Rotation SourceRot)

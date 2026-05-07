@@ -708,6 +708,42 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "387bf9e1-3055-456b-ad13-0df866d3740d",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "BulletPool",
+      "Position": "-283.322876,52.160675,38.6784744",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "BulletPoolManager",
+          "__guid": "9895a9fe-f870-446c-a978-0b0d18084f26",
+          "__enabled": true,
+          "Flags": 0,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PoolSize": 6,
+          "ProjectilePrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/bullet.prefab"
+          }
+        }
+      ],
+      "Children": []
     }
   ],
   "SceneProperties": {
