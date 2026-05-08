@@ -20,12 +20,22 @@
         "__guid": "b37fcc3e-aa43-453e-977a-a3722dcc4bfa",
         "__enabled": true,
         "Flags": 0,
+        "Collider": {
+          "_type": "component",
+          "component_id": "0964b8cc-d4df-4f51-8502-2b2c44f126aa",
+          "go": "c48b80dc-0007-4ea8-8b81-d3c2bd7648c7",
+          "component_type": "BoxCollider"
+        },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
-        "OnComponentUpdate": null
+        "OnComponentUpdate": null,
+        "Visuals": {
+          "_type": "gameobject",
+          "go": "2cdac34c-f862-48fc-8d82-9741d776764b"
+        }
       },
       {
         "__type": "Sandbox.BoxCollider",
@@ -52,17 +62,51 @@
         "Static": false,
         "Surface": null,
         "SurfaceVelocity": "0,0,0"
+      },
+      {
+        "__type": "Sandbox.Rigidbody",
+        "__guid": "3c9a4edf-dda6-4c78-96cb-a96d317105bc",
+        "__enabled": true,
+        "Flags": 0,
+        "AngularDamping": 0,
+        "EnableImpactDamage": true,
+        "EnhancedCcd": false,
+        "Gravity": true,
+        "GravityScale": 1,
+        "ImpactDamage": 0,
+        "LinearDamping": 0,
+        "Locking": {
+          "X": false,
+          "Y": false,
+          "Z": false,
+          "Pitch": false,
+          "Yaw": false,
+          "Roll": false
+        },
+        "MassCenterOverride": "0,0,0",
+        "MassOverride": 0,
+        "MinImpactDamageSpeed": 500,
+        "MotionEnabled": true,
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null,
+        "OverrideMassCenter": false,
+        "RigidbodyFlags": 0,
+        "StartAsleep": false
       }
     ],
     "Children": [
       {
-        "__guid": "81f88d83-7fc5-4547-9ee0-51d9b7003147",
+        "__guid": "2cdac34c-f862-48fc-8d82-9741d776764b",
         "__version": 2,
         "Flags": 0,
-        "Name": "hoover_a",
-        "Position": "0,0,-10.0861816",
+        "Name": "Cube",
+        "Position": "0,0,0",
         "Rotation": "0,0,0,1",
-        "Scale": "2,2,2",
+        "Scale": "0.75,0.75,0.75",
         "Tags": "",
         "Enabled": true,
         "NetworkMode": 2,
@@ -72,56 +116,23 @@
         "OwnerTransfer": 1,
         "Components": [
           {
-            "__type": "Sandbox.Prop",
-            "__guid": "d1edbdce-2ba6-4e2a-b253-45f2ca44ffdf",
+            "__type": "Sandbox.ModelRenderer",
+            "__guid": "f59560fb-1547-487e-afe5-ea74c460d5d5",
             "__enabled": true,
             "Flags": 0,
             "BodyGroups": 18446744073709551615,
-            "Health": 0,
-            "IsStatic": false,
-            "MaterialGroup": null,
-            "Model": "models/props/hoover/hoover_a.vmdl",
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "OnPropBreak": null,
-            "OnPropTakeDamage": null,
-            "StartAsleep": false,
-            "Tint": "1,1,1,1"
-          },
-          {
-            "__type": "Sandbox.SkinnedModelRenderer",
-            "__guid": "a5c0d65a-083f-4bbe-a9a1-931f52fc12f6",
-            "__enabled": true,
-            "Flags": 0,
-            "AnimationGraph": null,
-            "BodyGroups": 18446744073709551615,
-            "BoneMergeTarget": null,
             "CreateAttachments": false,
-            "CreateBoneObjects": false,
             "LodOverride": null,
             "MaterialGroup": null,
             "MaterialOverride": null,
             "Materials": null,
-            "Model": "models/props/hoover/hoover_a.vmdl",
-            "Morphs": {},
+            "Model": "models/dev/box.vmdl",
             "OnComponentDestroy": null,
             "OnComponentDisabled": null,
             "OnComponentEnabled": null,
             "OnComponentFixedUpdate": null,
             "OnComponentStart": null,
             "OnComponentUpdate": null,
-            "Parameters": {
-              "bools": {},
-              "ints": {},
-              "floats": {},
-              "vectors": {},
-              "rotations": {}
-            },
-            "PlaybackRate": 1,
             "RenderOptions": {
               "GameLayer": true,
               "OverlayLayer": false,
@@ -129,47 +140,7 @@
               "AfterUILayer": false
             },
             "RenderType": "On",
-            "Sequence": {
-              "Name": null,
-              "Looping": true,
-              "Blending": false
-            },
-            "Tint": "1,1,1,1",
-            "UseAnimGraph": true
-          },
-          {
-            "__type": "Sandbox.ModelPhysics",
-            "__guid": "e2851cfc-5e84-41b5-a8f4-dab74345ceb0",
-            "__enabled": true,
-            "Flags": 0,
-            "Bodies": [],
-            "IgnoreRoot": false,
-            "Joints": [],
-            "Locking": {
-              "X": false,
-              "Y": false,
-              "Z": false,
-              "Pitch": false,
-              "Yaw": false,
-              "Roll": false
-            },
-            "Model": "models/props/hoover/hoover_a.vmdl",
-            "MotionEnabled": true,
-            "OnComponentDestroy": null,
-            "OnComponentDisabled": null,
-            "OnComponentEnabled": null,
-            "OnComponentFixedUpdate": null,
-            "OnComponentStart": null,
-            "OnComponentUpdate": null,
-            "PhysicsWereCreated": false,
-            "Renderer": {
-              "_type": "component",
-              "component_id": "a5c0d65a-083f-4bbe-a9a1-931f52fc12f6",
-              "go": "81f88d83-7fc5-4547-9ee0-51d9b7003147",
-              "component_type": "SkinnedModelRenderer"
-            },
-            "RigidbodyFlags": 0,
-            "StartAsleep": false
+            "Tint": "1,1,1,1"
           }
         ],
         "Children": []
@@ -202,8 +173,6 @@
   "MenuPath": null,
   "MenuIcon": null,
   "DontBreakAsTemplate": false,
-  "__references": [
-    "facepunch.hoovera#143312"
-  ],
+  "__references": [],
   "__version": 2
 }

@@ -6,8 +6,18 @@ public sealed class EnemySpawnerComp : Component
 
 	[Property] public float SpawnInterval { get; set; } = 10f;
 
+	[Property] public GameObject GameSpawnObject { get; set; }
 	private TimeSince _timeSinceLastSpawn;
 
+	protected override void OnStart()
+	{
+		SpawnAfterDelay(3f);
+	}	
+	public async void SpawnAfterDelay(float seconds = 5f)
+	{
+		await GameTask.DelaySeconds(seconds);
+		SpawnEnemy(true);
+	}
 	protected override void OnUpdate()
 	{
 		// Only the server is allowed to spawn
@@ -19,17 +29,23 @@ public sealed class EnemySpawnerComp : Component
 
 		if ( _timeSinceLastSpawn >= SpawnInterval )
 		{
-			SpawnEnemy();
+			SpawnEnemy(true);
 			_timeSinceLastSpawn = 0;
 		}
 	}
 
-	private void SpawnEnemy()
+	private void SpawnEnemy(bool isPreload)
 	{
+		EnemyPoolManager.Instance?.SpawnEnemy(
+			GameSpawnObject.WorldPosition,
+			GameSpawnObject.WorldRotation
+		);
+		/*
+		Vector3 spawnPt = GameSpawnObject.WorldPosition;
 		var enemy = EnemyPrefab.Clone(
-			Transform.Position + Vector3.Forward * 100f
+			spawnPt + Vector3.Forward * 100f
 		);
 
-		Log.Info( $"Spawned enemy: {enemy.Name}" );
+		Log.Info( $"Spawned enemy: {enemy.Name}" );*/
 	}
 }

@@ -282,6 +282,78 @@
       "Children": []
     },
     {
+      "__guid": "be7c6a2c-779b-4a0c-afd6-6be2fbf311d7",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "PreloadStage",
+      "Position": "0,0,-600",
+      "Rotation": "0,0,0,1",
+      "Scale": "20,20,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "Sandbox.ModelRenderer",
+          "__guid": "f2b35e93-3981-43dd-8455-039a7bb9bf9e",
+          "__enabled": true,
+          "Flags": 0,
+          "BodyGroups": 18446744073709551615,
+          "CreateAttachments": false,
+          "LodOverride": null,
+          "MaterialGroup": null,
+          "MaterialOverride": "materials/floor.vmat",
+          "Materials": null,
+          "Model": "models/dev/box.vmdl",
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "RenderOptions": {
+            "GameLayer": true,
+            "OverlayLayer": false,
+            "BloomLayer": false,
+            "AfterUILayer": false
+          },
+          "RenderType": "On",
+          "Tint": "0.11628,0.11628,0.11628,1"
+        },
+        {
+          "__type": "Sandbox.BoxCollider",
+          "__guid": "1435bbb6-33de-4207-ac07-e63ca5971594",
+          "__enabled": true,
+          "Flags": 0,
+          "Center": "0,0,0",
+          "ColliderFlags": 0,
+          "Elasticity": null,
+          "Friction": null,
+          "IsTrigger": false,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "OnObjectTriggerEnter": null,
+          "OnObjectTriggerExit": null,
+          "OnTriggerEnter": null,
+          "OnTriggerExit": null,
+          "RollingResistance": null,
+          "Scale": "50,50,50",
+          "Static": false,
+          "Surface": null,
+          "SurfaceVelocity": "0,0,0"
+        }
+      ],
+      "Children": []
+    },
+    {
       "__guid": "fbd993a8-018a-4e63-9488-01bee4079486",
       "__version": 2,
       "Flags": 0,
@@ -678,7 +750,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "EnemySpawner",
-      "Position": "0,0,0",
+      "Position": "0,0,-250",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -698,6 +770,10 @@
             "_type": "gameobject",
             "prefab": "prefabs/gruntpref.prefab"
           },
+          "GameSpawnObject": {
+            "_type": "gameobject",
+            "go": "db9c3554-6d61-4438-8335-bc9233d5e524"
+          },
           "OnComponentDestroy": null,
           "OnComponentDisabled": null,
           "OnComponentEnabled": null,
@@ -707,14 +783,33 @@
           "SpawnInterval": 10
         }
       ],
-      "Children": []
+      "Children": [
+        {
+          "__guid": "db9c3554-6d61-4438-8335-bc9233d5e524",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "SpawnPt",
+          "Position": "0,0,300",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [],
+          "Children": []
+        }
+      ]
     },
     {
       "__guid": "387bf9e1-3055-456b-ad13-0df866d3740d",
       "__version": 2,
       "Flags": 0,
       "Name": "BulletPool",
-      "Position": "-283.322876,52.160675,38.6784744",
+      "Position": "0,0,-250",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -744,6 +839,65 @@
         }
       ],
       "Children": []
+    },
+    {
+      "__guid": "aae1b99e-79a6-43e4-81a5-ec1e20da9dca",
+      "__version": 2,
+      "Flags": 0,
+      "Name": "EnemyPool",
+      "Position": "-283.322876,52.160675,-250",
+      "Rotation": "0,0,0,1",
+      "Scale": "1,1,1",
+      "Tags": "",
+      "Enabled": true,
+      "NetworkMode": 2,
+      "NetworkFlags": 0,
+      "NetworkOrphaned": 0,
+      "NetworkTransmit": true,
+      "OwnerTransfer": 1,
+      "Components": [
+        {
+          "__type": "EnemyPoolManager",
+          "__guid": "a1cd706c-1f2b-4e56-8228-83e41cf69e16",
+          "__enabled": true,
+          "Flags": 0,
+          "EnemyPrefab": {
+            "_type": "gameobject",
+            "prefab": "prefabs/gruntpref.prefab"
+          },
+          "InitialPoolSize": 5,
+          "OnComponentDestroy": null,
+          "OnComponentDisabled": null,
+          "OnComponentEnabled": null,
+          "OnComponentFixedUpdate": null,
+          "OnComponentStart": null,
+          "OnComponentUpdate": null,
+          "PreloadSpawnObject": {
+            "_type": "gameobject",
+            "go": "c5e9ad45-2d3f-4c0f-af57-aab2c0b19b7c"
+          }
+        }
+      ],
+      "Children": [
+        {
+          "__guid": "c5e9ad45-2d3f-4c0f-af57-aab2c0b19b7c",
+          "__version": 2,
+          "Flags": 0,
+          "Name": "PreloadSpawnPt",
+          "Position": "0,0,0",
+          "Rotation": "0,0,0,1",
+          "Scale": "1,1,1",
+          "Tags": "",
+          "Enabled": true,
+          "NetworkMode": 2,
+          "NetworkFlags": 0,
+          "NetworkOrphaned": 0,
+          "NetworkTransmit": true,
+          "OwnerTransfer": 1,
+          "Components": [],
+          "Children": []
+        }
+      ]
     }
   ],
   "SceneProperties": {
@@ -771,13 +925,13 @@
           "SelectionSets": []
         }
       },
-      "Sandbox.MovieMaker.MovieRecorderSystem": {
-        "DisableClientRecording": false
-      },
       "Sandbox.Clutter.ClutterGridSystem": {
         "Storage": {
           "$blob": "337d1d9c-4e6e-456c-a9ee-5e16dd85c280"
         }
+      },
+      "Sandbox.MovieMaker.MovieRecorderSystem": {
+        "DisableClientRecording": false
       }
     }
   },

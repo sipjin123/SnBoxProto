@@ -3,11 +3,12 @@ using Sandbox;
 public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListener
 {
 	[Property]
-	public float Speed { get; set; } = 2000f;
+	public float Speed { get; set; } = 1000f;
 
 	[Property]
 	public float LifeTime { get; set; } = 3f;
 	private bool _isActive;
+	Rigidbody Rigidbody;
 	[Sync]
 	public bool IsActive
 	{
@@ -72,6 +73,8 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 	protected override void OnStart()
 	{
 		base.OnStart();
+		
+		//Rigidbody = GameObject.Components.Get<Rigidbody>();
 		_smoothPosition = WorldPosition;
 	}
 	protected override void OnUpdate()
@@ -80,9 +83,18 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 		// Server authoritative movement
 		if ( !IsActive )
 			return;
+
+
+		//Rigidbody.Velocity = Direction * Speed;
 		if ( Networking.IsHost )
 		{
 			WorldPosition += Direction * Speed * Time.Delta;
+
+			    var start = WorldPosition;
+				var end = start + Direction * Speed * Time.Delta;
+
+				if ( HandleSweepHit( start, end ) )
+					return;
 		}
 		else
 		{
@@ -105,9 +117,10 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 
 	public void OnTriggerEnter( Collider other )
 	{
-		if ( other.Components.Get<IPlayer>() == null )
+		return;
+		if ( other.Components.Get<IActor>() == null)
 		{
-			//RePool();
+			RePool();
 			return;
 		}
 
@@ -134,10 +147,18 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 				Log.Info( $"This object Cant find OWNER: {GameObject.Name}" );
 			}
 		}
+		
+		EnemyBase enemyBase = other.Components.Get<EnemyBase>();
+		if (enemyBase != null )
+		{
+			Log.Info( $"This object is an enemy: {enemyBase.GameObject.Name}" );
+			enemyBase.TakeDamage(20f);
+		}
 		else
 		{
 			Log.Info( $"This object Cant find a State Comp: {other.GameObject.Name}" );
 		}
+		
 		RePool();
 
 		/*
@@ -147,6 +168,41 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 		Log.Info($"Hit: {other.GameObject.Name}");
 
 		;*/
+	}
+	private bool HandleSweepHit( Vector3 start, Vector3 end )
+	{
+		var trace = Scene.Trace
+			.Ray( start, end )
+			.IgnoreGameObject( Owner )
+			.Run();
+
+		DebugOverlay.Line(start, end, Color.Red, .1f);
+		if ( !trace.Hit )
+			return false;
+
+		OnProjectileHit( trace );
+
+		return true;
+	}
+
+	private void OnProjectileHit( SceneTraceResult trace )
+	{
+		var enemy = trace.GameObject.Components.Get<EnemyBase>();
+
+		DebugOverlay.Sphere(new Sphere(trace.EndPosition, 25f), Color.Blue, 5f);
+		if ( enemy != null )
+		{
+			
+			Log.Info( $"Hit: {trace.GameObject.Name}" );
+			enemy.TakeDamage( 25f );
+		}
+		else
+		{
+			
+			Log.Info( $"MEH: {trace.GameObject.Name}" );
+		}
+
+		RePool();
 	}
 
 	void RePool()
