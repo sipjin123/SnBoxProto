@@ -36,10 +36,8 @@ public sealed class BulletPoolManager : Component
 	}
 
 	public PlayerProjectile Get(
-		Vector3 position,
-		Rotation rotation,
-		Vector3 direction
-	)
+		Vector3 position, Rotation rotation,
+		Vector3 direction, int NewID, GameObject owner)
 	{
 		if ( _available.Count <= 0 )
 		{
@@ -57,9 +55,10 @@ public sealed class BulletPoolManager : Component
 
 		var projectile = _available.Dequeue();
 
-		projectile.GameObject.Transform.Position = position;
-		projectile.GameObject.Transform.Rotation = rotation;
-
+		projectile.GameObject.WorldPosition = position;
+		projectile.GameObject.WorldRotation = rotation;
+		projectile.PlayerId = NewID;
+		projectile.Owner = owner;
 		projectile.Fire( direction );
 
 		return projectile;

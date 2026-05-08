@@ -14,7 +14,7 @@ public sealed class AbilityComp : Component
 		var rot   = tr.Rotation;
 #pragma warning restore CS0618
 
-		var NewPlayerId = Components.Get<PlayerStateComp>().PlayerId;
+		var NewPlayerId = GameObject.Components.Get<PlayerStateComp>().PlayerId;
 		ShootRequest(NewPlayerId, start, rot);
 	}
 
@@ -31,11 +31,9 @@ public sealed class AbilityComp : Component
 		{
 			if ( Networking.IsHost )
 			{
-				var tr = Scene.Camera.GameObject.Transform;
 				BulletPoolManager.Instance.Get(
-					GameObject.Transform.Position + new Vector3(0,0,30f),
-					tr.Rotation,
-					tr.Rotation.Forward
+					WorldPosition + new Vector3(0,0,30f),
+					SourceRot, SourceRot.Forward, NewPlayerId, GameObject
 				);
 			}
 		}
