@@ -191,7 +191,7 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 		if ( enemy != null )
 		{
 			
-			Log.Info( $"Hit: {trace.GameObject.Name}" );
+			Log.Info( $"Hit: {trace.GameObject.Name} {enemy.Health}" );
 			enemy.TakeDamage( 25f );
 		}
 		else

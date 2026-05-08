@@ -3,6 +3,7 @@ using Sandbox;
 
 public sealed class EnemySpawnerComp : Component
 {
+    public static EnemySpawnerComp Instance { get; private set; }
 	[Property] public GameObject EnemyPrefab { get; set; }
 
 	[Property] public float SpawnInterval { get; set; } = 10f;
@@ -13,12 +14,13 @@ public sealed class EnemySpawnerComp : Component
 	[Property] public float SpawnRadius { get; set; } = 500f;
 	protected override void OnStart()
 	{
+		Instance = this;
 		SpawnAfterDelay(3f);
 	}	
 	public async void SpawnAfterDelay(float seconds = 5f)
 	{
 		await GameTask.DelaySeconds(seconds);
-		SpawnEnemy(true);
+		//SpawnEnemy(true);
 	}
 	protected override void OnUpdate()
 	{
@@ -31,12 +33,12 @@ public sealed class EnemySpawnerComp : Component
 
 		if ( _timeSinceLastSpawn >= SpawnInterval )
 		{
-			SpawnEnemy(true);
+			//SpawnEnemy(true);
 			_timeSinceLastSpawn = 0;
 		}
 	}
 
-	private void SpawnEnemy(bool isPreload)
+	public void SpawnEnemy(bool isPreload)
 	{
 		float randomX =  Game.Random.Float( -SpawnRadius, SpawnRadius );
 		float randomY =  Game.Random.Float( -SpawnRadius, SpawnRadius );

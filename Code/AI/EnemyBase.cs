@@ -106,6 +106,7 @@ public partial class EnemyBase : Component, IActor
     {
         Health = 100f;
 
+		Log.Info($" Enemy Reset: {GameObject.Name} {Health} ");
         SetActiveState( true );
 		var Body = GameObject.GetComponent<Rigidbody>();
 		if ( Body != null )
@@ -132,7 +133,7 @@ public partial class EnemyBase : Component, IActor
         Health -= damage;
 
         
-		Log.Info($"HP Enemy: {GameObject.Name} {Health}");
+		Log.Info($"HP Enemy: {GameObject.Name} {Health} - {damage}");
         if ( Health <= 0f )
         {
             Die();
