@@ -8,7 +8,6 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 	[Property]
 	public float LifeTime { get; set; } = 3f;
 	private bool _isActive;
-	Rigidbody Rigidbody;
 	[Sync]
 	public bool IsActive
 	{
@@ -74,7 +73,6 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 	{
 		base.OnStart();
 		
-		//Rigidbody = GameObject.Components.Get<Rigidbody>();
 		_smoothPosition = WorldPosition;
 	}
 	protected override void OnUpdate()

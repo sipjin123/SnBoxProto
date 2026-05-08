@@ -32,6 +32,14 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null,
+        "SpawnedHUD": {
+          "_type": "gameobject",
+          "go": "910a4f55-92e5-4593-b05a-833e728762a8"
+        },
+        "UnitHUD": {
+          "_type": "gameobject",
+          "prefab": "prefabs/enemyhud.prefab"
+        },
         "Visuals": {
           "_type": "gameobject",
           "go": "2cdac34c-f862-48fc-8d82-9741d776764b"
@@ -143,7 +151,92 @@
             "Tint": "1,1,1,1"
           }
         ],
-        "Children": []
+        "Children": [
+          {
+            "__guid": "2b822aa9-a7d7-4738-881d-d8c3afec1eeb",
+            "__version": 2,
+            "Flags": 0,
+            "Name": "Sphere",
+            "Position": "0,0,42.2800484",
+            "Rotation": "0,0,0,1",
+            "Scale": "0.333333343,0.333333343,0.333333343",
+            "Tags": "",
+            "Enabled": true,
+            "NetworkMode": 2,
+            "NetworkFlags": 0,
+            "NetworkOrphaned": 0,
+            "NetworkTransmit": true,
+            "OwnerTransfer": 1,
+            "Components": [
+              {
+                "__type": "Sandbox.ModelRenderer",
+                "__guid": "fd0ade8e-ea7e-454a-aa5f-54cab1da9076",
+                "__enabled": true,
+                "Flags": 0,
+                "BodyGroups": 18446744073709551615,
+                "CreateAttachments": false,
+                "LodOverride": null,
+                "MaterialGroup": null,
+                "MaterialOverride": null,
+                "Materials": null,
+                "Model": "models/dev/sphere.vmdl",
+                "OnComponentDestroy": null,
+                "OnComponentDisabled": null,
+                "OnComponentEnabled": null,
+                "OnComponentFixedUpdate": null,
+                "OnComponentStart": null,
+                "OnComponentUpdate": null,
+                "RenderOptions": {
+                  "GameLayer": true,
+                  "OverlayLayer": false,
+                  "BloomLayer": false,
+                  "AfterUILayer": false
+                },
+                "RenderType": "On",
+                "Tint": "1,1,1,1"
+              }
+            ],
+            "Children": []
+          }
+        ]
+      },
+      {
+        "__guid": "910a4f55-92e5-4593-b05a-833e728762a8",
+        "__version": 2,
+        "__Prefab": "prefabs/enemyhud.prefab",
+        "__PrefabInstancePatch": {
+          "AddedObjects": [],
+          "RemovedObjects": [],
+          "PropertyOverrides": [
+            {
+              "Target": {
+                "Type": "GameObject",
+                "IdValue": "c18a0a4f-ba9f-4bae-bebf-c89ac772e834"
+              },
+              "Property": "Position",
+              "Value": "0,0,70"
+            },
+            {
+              "Target": {
+                "Type": "Component",
+                "IdValue": "a22dc312-5e7f-46f0-83d0-e8547766aa12"
+              },
+              "Property": "enemyBase",
+              "Value": {
+                "_type": "component",
+                "component_id": "b37fcc3e-aa43-453e-977a-a3722dcc4bfa",
+                "go": "c48b80dc-0007-4ea8-8b81-d3c2bd7648c7",
+                "component_type": "Grunt"
+              }
+            }
+          ],
+          "MovedObjects": []
+        },
+        "__PrefabIdToInstanceId": {
+          "c18a0a4f-ba9f-4bae-bebf-c89ac772e834": "910a4f55-92e5-4593-b05a-833e728762a8",
+          "a22dc312-5e7f-46f0-83d0-e8547766aa12": "b2f53a85-32b7-411d-97f7-49f490b846b3",
+          "53fe2cd5-5e92-4a0b-852e-68232fed9768": "65677aa5-a0d6-4cc7-a638-c76e9ed50225"
+        }
       }
     ],
     "__properties": {

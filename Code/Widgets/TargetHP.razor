@@ -1,0 +1,35 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+	<div class="HealthbarRoot">
+		<div class="Healthbar">
+			<div class="Background">
+				<div class="Inner">
+					<div class="Fill" style="width: @((enemyBase.Health / 100) * 100)%"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+		<div class="Infobar">
+    	<div class="Background">
+    		<div class="Inner">
+    			<div class="Text"> @(enemyBase.Health) </div>
+    	</div>
+    	</div>
+    	</div>
+</root>
+
+@code
+{
+	[Property] public EnemyBase enemyBase;
+	
+	protected override int BuildHash()
+	{
+		return System.HashCode.Combine(enemyBase?.Health);
+	}
+
+}

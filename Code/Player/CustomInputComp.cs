@@ -33,11 +33,17 @@ public sealed class CustomInputComp : Component, IPlayer
 		Log.Info("----- Started!");
 
 
-			GameObject WorldHudObj = UnitHUD.Clone();
-			WorldHudObj.SetParent(GameObject); // 👈 parent to caller
-			WorldHudObj.LocalPosition = new Vector3(0, 0, 70f);
-			WorldHudObj.Components.Get<UnitHP>().player = PlayerStateComp;
+		GameObject WorldHudObj = UnitHUD.Clone();
+		WorldHudObj.SetParent(GameObject); // 👈 parent to caller
+		WorldHudObj.LocalPosition = new Vector3(0, 0, 70f);
+		WorldHudObj.Components.Get<UnitHP>().player = PlayerStateComp;
 
+		var citizen = Components.Get<Dresser>();
+		//citizen.Randomize();
+		if ( citizen != null )
+		{
+			citizen.Apply();
+		}
 		if (!Network.IsOwner)
 		{
 		}

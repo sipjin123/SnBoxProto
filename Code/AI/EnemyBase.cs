@@ -2,9 +2,11 @@ using Sandbox;
 
 public partial class EnemyBase : Component, IActor
 {
+    [Property] 
+	public GameObject SpawnedHUD;
 	protected override void OnStart()
 	{
-		
+		//SpawnedHUD.Components.Get<TargetHP>().enemyBase = this;
 	}	
 	protected override void OnUpdate()
 	{
@@ -34,7 +36,7 @@ public partial class EnemyBase : Component, IActor
 
     [Sync]
     public bool IsActive
-    {
+    {   
         get => _isActive;
         set
         {
@@ -45,6 +47,28 @@ public partial class EnemyBase : Component, IActor
 
             if ( Collider != null )
                 Collider.Enabled = value;
+
+            if ( SpawnedHUD == null )
+            {
+                var NewHUD = GameObject.GetComponentInChildren<TargetHP>();
+                if (NewHUD == null )
+                {
+		            Log.Info($" FAIL Re-Assign HUD: {GameObject.Name} {value}");
+                }
+                else
+                {
+                    
+		            Log.Info($" Success Re-Assign HUD: {GameObject.Name} {value}");
+                    SpawnedHUD = NewHUD.GameObject;
+                    SpawnedHUD.Enabled = value;
+                }
+            }
+            else
+            {
+                
+		        Log.Info($" Always Success Re-Assign HUD: {GameObject.Name} {value}");
+                SpawnedHUD.Enabled = value;
+            }
         }
     }
 
@@ -107,6 +131,8 @@ public partial class EnemyBase : Component, IActor
 
         Health -= damage;
 
+        
+		Log.Info($"HP Enemy: {GameObject.Name} {Health}");
         if ( Health <= 0f )
         {
             Die();

@@ -1,0 +1,55 @@
+TargetHP
+{
+.title
+	{
+		font-size: 30px;
+		font-family: Poppins;
+		color: #fff;
+	}
+	.HealthbarRoot
+	{
+		transform: translateY(-200px); // 🔥 THIS WORKS
+	}
+	.Healthbar
+	{
+		position: absolute;
+		bottom: 30px;
+		left: 0px;
+		width: 100%;
+		height: 30px;
+		.Background{
+			width: 300px;
+			height: 25px;
+			padding: 0px;
+		}
+		.Inner{
+			background-color: aqua;
+			flex-grow: 1;
+			.Fill{
+				height: 100%;
+				width: 100%;
+				background-color: orange;
+			}
+		}
+	}
+	.Infobar
+	{
+		position: absolute;
+
+		.Background{
+			width: 300px;
+			height: 25px;
+			padding: 0px;
+		}
+		.Inner{
+			flex-grow: 1;
+			.Fill{
+				height: 100%;
+				width: 100%;
+			}
+		}.Text
+		 {
+			 font-size: 24px; // 🔥 increase this
+		 }
+	}
+}
