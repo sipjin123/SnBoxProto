@@ -59,6 +59,7 @@ public sealed class BulletPoolManager : Component
 		projectile.GameObject.WorldRotation = rotation;
 		projectile.PlayerId = NewID;
 		projectile.Owner = owner;
+		projectile.GameObject.Network.Refresh();
 		projectile.Fire( direction );
 
 		return projectile;

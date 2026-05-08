@@ -32,7 +32,7 @@ public sealed class AbilityComp : Component
 			if ( Networking.IsHost )
 			{
 				BulletPoolManager.Instance.Get(
-					WorldPosition + new Vector3(0,0,30f),
+					TransformUtil.GetPointInFront(WorldPosition, SourceRot.Forward, 100f) + new Vector3(0,0,30f),
 					SourceRot, SourceRot.Forward, NewPlayerId, GameObject
 				);
 			}
@@ -41,7 +41,7 @@ public sealed class AbilityComp : Component
 
 	void SpawnProjectile(int NewPlayerId, Vector3 SourceLoc, Rotation SourceRot)
 	{
-		GameObject bullet = GenericProjectile.Clone(TransformUtil.GetPointInFront(SourceLoc, SourceRot.Forward, 50f), SourceRot);
+		GameObject bullet = GenericProjectile.Clone(TransformUtil.GetPointInFront(SourceLoc, SourceRot.Forward, 100f), SourceRot);
 		bullet.NetworkSpawn();
     	bullet.Network.TakeOwnership();
 
