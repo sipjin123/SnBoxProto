@@ -34,12 +34,13 @@ public sealed class PlayerProjectile : BaseProjectile, Component.ITriggerListene
 	{
 		base.OnUpdate();
 		// Server authoritative movement
-		if ( !Networking.IsHost )
-			return;
 		if ( !_isActive )
 			return;
-
-		Transform.Position += Direction * Speed * Time.Delta;
+			
+		if ( Networking.IsHost )
+		{
+			WorldPosition += Direction * Speed * Time.Delta;
+		}
 
 		// Simple lifetime cleanup
 		if ( _spawnTime >= LifeTime )
