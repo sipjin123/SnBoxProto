@@ -13,7 +13,7 @@ public sealed class BulletPoolManager : Component
 	protected override void OnStart()
 	{
 		Instance = this;
-		
+
 		// SERVER ONLY
 		if ( !Networking.IsHost )
 			return;
@@ -41,38 +41,42 @@ public sealed class BulletPoolManager : Component
 		Vector3 direction
 	)
 	{
-	 if ( _available.Count <= 0 )
-    {
-        var newProjectile = CreateProjectile();
-		if (newProjectile != null){
-        _available.Enqueue( newProjectile );}else{
-        
-        Log.Info( "Fail to Generate Pool Entry" );
-        }
-    }
+		if ( _available.Count <= 0 )
+		{
+			var newProjectile = CreateProjectile();
+			if ( newProjectile != null )
+			{
+				_available.Enqueue( newProjectile );
+			}
+			else
+			{
 
-    var projectile = _available.Dequeue();
+				Log.Info( "Fail to Generate Pool Entry" );
+			}
+		}
 
-    projectile.GameObject.Transform.Position = position;
-    projectile.GameObject.Transform.Rotation = rotation;
+		var projectile = _available.Dequeue();
 
-    projectile.Fire( direction );
+		projectile.GameObject.Transform.Position = position;
+		projectile.GameObject.Transform.Rotation = rotation;
 
-    return projectile;
+		projectile.Fire( direction );
+
+		return projectile;
 	}
 
-private PlayerProjectile CreateProjectile()
-{
-    var obj = ProjectilePrefab.Clone();
-var projectile = obj.Components.Get<PlayerProjectile>();
-    projectile.Pool = this;
+	private PlayerProjectile CreateProjectile()
+	{
+		var obj = ProjectilePrefab.Clone();
+		var projectile = obj.Components.Get<PlayerProjectile>();
+		projectile.Pool = this;
 
-    obj.Enabled = false;
+		obj.Enabled = false;
 
-    obj.NetworkSpawn();
+		obj.NetworkSpawn();
 
-    return projectile;
-}
+		return projectile;
+	}
 
 	public void Return( PlayerProjectile projectile )
 	{
