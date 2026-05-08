@@ -83,7 +83,17 @@ public partial class EnemyBase : Component, IActor
         Health = 100f;
 
         SetActiveState( true );
+		var Body = GameObject.GetComponent<Rigidbody>();
+		if ( Body != null )
+		{
+			Body.Velocity = Vector3.Zero;
+			Body.AngularVelocity = Vector3.Zero;
 
+			Body.Enabled = false;
+			Body.Enabled = true;
+
+			Body.Reset();
+		}
         GameObject.Network.Refresh();
     }
 

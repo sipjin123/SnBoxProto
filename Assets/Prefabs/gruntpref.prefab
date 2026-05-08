@@ -124,7 +124,7 @@
             "CreateAttachments": false,
             "LodOverride": null,
             "MaterialGroup": null,
-            "MaterialOverride": null,
+            "MaterialOverride": "materials/redmat.vmat",
             "Materials": null,
             "Model": "models/dev/box.vmdl",
             "OnComponentDestroy": null,

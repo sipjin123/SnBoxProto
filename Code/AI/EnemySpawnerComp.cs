@@ -1,3 +1,4 @@
+using System;
 using Sandbox;
 
 public sealed class EnemySpawnerComp : Component
@@ -9,6 +10,7 @@ public sealed class EnemySpawnerComp : Component
 	[Property] public GameObject GameSpawnObject { get; set; }
 	private TimeSince _timeSinceLastSpawn;
 
+	[Property] public float SpawnRadius { get; set; } = 500f;
 	protected override void OnStart()
 	{
 		SpawnAfterDelay(3f);
@@ -36,8 +38,10 @@ public sealed class EnemySpawnerComp : Component
 
 	private void SpawnEnemy(bool isPreload)
 	{
+		float randomX =  Game.Random.Float( -SpawnRadius, SpawnRadius );
+		float randomY =  Game.Random.Float( -SpawnRadius, SpawnRadius );
 		EnemyPoolManager.Instance?.SpawnEnemy(
-			GameSpawnObject.WorldPosition,
+			GameSpawnObject.WorldPosition + new Vector3(randomX, randomY, 0f),
 			GameSpawnObject.WorldRotation
 		);
 		/*

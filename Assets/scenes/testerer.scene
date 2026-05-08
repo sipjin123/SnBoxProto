@@ -430,7 +430,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "washing_machine",
-      "Position": "310.905457,120.303429,-26.8467178",
+      "Position": "422.798462,120.303429,-26.8467178",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -556,7 +556,7 @@
       "__version": 2,
       "Flags": 0,
       "Name": "vendingmachinesoda01a",
-      "Position": "236.373413,60.3794403,-26.8524666",
+      "Position": "236.373413,212.884735,-26.8524666",
       "Rotation": "0,0,0,1",
       "Scale": "1,1,1",
       "Tags": "",
@@ -678,42 +678,6 @@
       "Children": []
     },
     {
-      "__guid": "bd4f056b-7e90-4ed8-9817-969d4cb9e241",
-      "__version": 2,
-      "__Prefab": "prefabs/spawnableobj.prefab",
-      "__PrefabInstancePatch": {
-        "AddedObjects": [],
-        "RemovedObjects": [],
-        "PropertyOverrides": [
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "b26eff37-fd38-431d-992e-a06c09cf5ba1"
-            },
-            "Property": "Name",
-            "Value": "SpawnableObj"
-          },
-          {
-            "Target": {
-              "Type": "GameObject",
-              "IdValue": "b26eff37-fd38-431d-992e-a06c09cf5ba1"
-            },
-            "Property": "Position",
-            "Value": "280.421753,-71.5072327,47.7270355"
-          }
-        ],
-        "MovedObjects": []
-      },
-      "__PrefabIdToInstanceId": {
-        "b26eff37-fd38-431d-992e-a06c09cf5ba1": "bd4f056b-7e90-4ed8-9817-969d4cb9e241",
-        "38452e93-e2fd-480b-91f3-558395231e72": "0ad4cc76-1dee-4ae8-8c69-27edf689c131",
-        "43cc0cb6-bebc-4060-9784-b7f5f5b8b702": "5789dc61-c76f-4dae-9ac4-b40c5a1d55ca",
-        "d14f3d67-5a4f-4da7-8f80-f6acfeaedb1b": "5900fec4-f14f-4b1a-99b6-0703f711213b",
-        "6a8fe9d4-ce50-4543-a8d9-5dff32cf1996": "104565dd-920b-4858-8f63-56ddceddd63f",
-        "b96bc240-e978-4f2a-b96f-7510a7368d3a": "e2923730-6799-4343-8b9d-f99835c30c80"
-      }
-    },
-    {
       "__guid": "ae7e363d-6895-40df-9b6b-0321fe5246e2",
       "__version": 2,
       "__Prefab": "prefabs/gamemanager.prefab",
@@ -780,7 +744,8 @@
           "OnComponentFixedUpdate": null,
           "OnComponentStart": null,
           "OnComponentUpdate": null,
-          "SpawnInterval": 10
+          "SpawnInterval": 10,
+          "SpawnRadius": 500
         }
       ],
       "Children": [
@@ -789,7 +754,7 @@
           "__version": 2,
           "Flags": 0,
           "Name": "SpawnPt",
-          "Position": "0,0,300",
+          "Position": "0,0,250",
           "Rotation": "0,0,0,1",
           "Scale": "1,1,1",
           "Tags": "",
