@@ -20,7 +20,7 @@ public sealed class CustomInputComp : Component, IPlayer
 	const float traceDist = 500f;
 	const float debugTime = 2;
 	const float spherRadius = 25f;
-
+	private DashComp DashComp;
 	[Property] 
 	GameObject MeleeWeapon;
 	private SkinnedModelRenderer SkinnedModelRenderer;
@@ -32,6 +32,9 @@ public sealed class CustomInputComp : Component, IPlayer
 		ScreenLoggerComp = GameObject.Components.Get<ScreenLoggerComp>();
 		PlayerStateComp = GameObject.Components.Get<PlayerStateComp>();
 		AbilityComp = GameObject.Components.Get<AbilityComp>();
+		DashComp = GameObject.Components.Get<DashComp>();
+
+
 		SkinnedModelRenderer = Components.GetInChildren<SkinnedModelRenderer>();
 		Log.Info("----- Started!");
 
@@ -138,6 +141,10 @@ public sealed class CustomInputComp : Component, IPlayer
 			SkinnedModelRenderer.SceneModel?.SetAnimParameter( "b_attack", true );
 		}
 
+		if ( Input.Keyboard.Pressed( "X" ) )
+		{
+			DashComp.TryDash();
+		}
 		if ( Input.Keyboard.Pressed( "F" ) )
 		{
 			Log.Info( "F is down!" );

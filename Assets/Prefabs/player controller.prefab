@@ -359,6 +359,22 @@
         "OnComponentFixedUpdate": null,
         "OnComponentStart": null,
         "OnComponentUpdate": null
+      },
+      {
+        "__type": "DashComp",
+        "__guid": "e11213fd-9d81-4fdc-8394-3b427738aeeb",
+        "__enabled": true,
+        "Flags": 0,
+        "ChildObj": {
+          "_type": "gameobject",
+          "go": "844ad557-7254-40f2-a917-7b3dc9baa299"
+        },
+        "OnComponentDestroy": null,
+        "OnComponentDisabled": null,
+        "OnComponentEnabled": null,
+        "OnComponentFixedUpdate": null,
+        "OnComponentStart": null,
+        "OnComponentUpdate": null
       }
     ],
     "Children": [
