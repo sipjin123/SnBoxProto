@@ -88,10 +88,13 @@ public sealed class CustomInputComp : Component, IPlayer
 	{
 		base.OnFixedUpdate();
 		
-		if ( SkinnedModelRenderer.TryGetBoneTransform( "hold_r", out var tx ) )
+		if (SkinnedModelRenderer != null && SkinnedModelRenderer.TryGetBoneTransform( "hold_r", out var tx ) )
 		{
 				MeleeWeapon.WorldTransform = tx;
 		}
+		
+		//SkinnedModelRenderer.SceneModel?.SetAnimParameter( "move_speed", 1f );
+		//SkinnedModelRenderer.SceneModel?.SetAnimParameter( "wish_speed", 1f );
 	}
 
 	protected override void OnUpdate()
@@ -112,6 +115,12 @@ public sealed class CustomInputComp : Component, IPlayer
 		{
 			if ( SkinnedModelRenderer != null )
 			{
+				//SkinnedModelRenderer.PlaybackRate = 2.0f;
+				//SkinnedModelRenderer.SceneModel?.SetAnimParameter( "attack_speed", .1f );
+				//SkinnedModelRenderer.SceneModel?.SetAnimParameter( "playback_rate", .1f );
+				//SkinnedModelRenderer.SceneModel?.SetAnimParameter( "attack_playback_rate", .1f );
+				
+				SkinnedModelRenderer.SceneModel?.SetAnimParameter( "atk_spd", .3f );
 				SkinnedModelRenderer.SceneModel?.SetAnimParameter( "b_attack", true );
 			}
 			//GameObject bullet = prefabToSpawn.Clone( GetPointInFront(200f) );
@@ -139,7 +148,6 @@ public sealed class CustomInputComp : Component, IPlayer
 
 		if ( Input.Keyboard.Pressed( "G" ) )
 		{
-			
 			SkinnedModelRenderer.SceneModel?.SetAnimParameter( "b_reload", true );
 			
 			//NetMsgComp.RpcSendToServerNew();
@@ -184,6 +192,8 @@ public sealed class CustomInputComp : Component, IPlayer
 
 		if ( Input.Keyboard.Pressed( "M" ) )
 		{
+			SkinnedModelRenderer.SceneModel?.SetAnimParameter( "hit_strength", 1f );
+			SkinnedModelRenderer.SceneModel?.SetAnimParameter( "hit", true );
 			PlayerStateComp.ApplyDamageRpc(5f);
 		}
 		//if (!Network.IsOwner) return;
