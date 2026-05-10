@@ -163,6 +163,10 @@
         "__guid": "ce01adc1-15e6-4824-b4ce-bf2be741aa19",
         "__enabled": true,
         "Flags": 0,
+        "MeleeWeapon": {
+          "_type": "gameobject",
+          "go": "3efe00a7-e310-41cb-8da2-768512f24a8a"
+        },
         "OnComponentDestroy": null,
         "OnComponentDisabled": null,
         "OnComponentEnabled": null,
@@ -493,6 +497,22 @@
           }
         ],
         "Children": []
+      },
+      {
+        "__guid": "3efe00a7-e310-41cb-8da2-768512f24a8a",
+        "__version": 2,
+        "__Prefab": "prefabs/meleeweapon.prefab",
+        "__PrefabInstancePatch": {
+          "AddedObjects": [],
+          "RemovedObjects": [],
+          "PropertyOverrides": [],
+          "MovedObjects": []
+        },
+        "__PrefabIdToInstanceId": {
+          "e8d67c52-1fe2-400f-8621-bdb121728669": "3efe00a7-e310-41cb-8da2-768512f24a8a",
+          "c1905096-1f80-4f86-8c14-f9d1c60dc158": "a1ef46fa-e7b2-4e7d-8b4c-4c773f2c26eb",
+          "d21d358a-2f5f-4467-b960-17be1dbc2a52": "4f82fd2f-9329-4d52-993a-fc644a3e22be"
+        }
       }
     ],
     "__properties": {

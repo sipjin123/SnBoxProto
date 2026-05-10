@@ -1,6 +1,7 @@
 using Sandbox;
 using Sandbox.Network;
 using Sandbox.Citizen;
+using static Sandbox.Citizen.CitizenAnimationHelper;
 
 public sealed class CustomInputComp : Component, IPlayer
 {
@@ -20,6 +21,8 @@ public sealed class CustomInputComp : Component, IPlayer
 	const float debugTime = 2;
 	const float spherRadius = 25f;
 
+	[Property] 
+	GameObject MeleeWeapon;
 	private SkinnedModelRenderer SkinnedModelRenderer;
 	protected override void OnStart()
 	{
@@ -57,7 +60,38 @@ public sealed class CustomInputComp : Component, IPlayer
 				HudObj.Components.Get<RazorBinderOBJ>().BindObjToRazor(GameObject.Components.Get<PlayerStateComp>());
 			}
 		}
-		SkinnedModelRenderer.SceneModel.SetAnimParameter( "holdtype", 1 );
+		//SkinnedModelRenderer.SceneModel.SetAnimParameter( "holdtype", 1 );
+		/*
+		Pistol 1
+		Rifle 2
+		Shotgun 3
+		Melee 4
+		Fists 5
+		Swing, 6
+		RPG, 7
+		Physgun 8
+		*/ 
+
+		//b_reload / b_deploy / hit / b_noclip(fly) / b_reloading(hold) /
+		SkinnedModelRenderer.SceneModel.SetAnimParameter( "holdtype", 6 );
+		//MeleeWeapon.SetParent( SkinnedModelRenderer.GameObject, false );
+		
+		/*
+		var bone = SkinnedModelRenderer.GetBoneObject( "hold_r" );
+		MeleeWeapon.SetParent( bone, false );
+		MeleeWeapon.LocalPosition = Vector3.Zero;
+		MeleeWeapon.LocalRotation = Rotation.Identity;*/
+
+	}
+
+	protected override void OnFixedUpdate()
+	{
+		base.OnFixedUpdate();
+		
+		if ( SkinnedModelRenderer.TryGetBoneTransform( "hold_r", out var tx ) )
+		{
+				MeleeWeapon.WorldTransform = tx;
+		}
 	}
 
 	protected override void OnUpdate()
@@ -65,15 +99,14 @@ public sealed class CustomInputComp : Component, IPlayer
 		//if (Input.Pressed("jump")) Log.Info("Jump");
 		//if (Input.Pressed("attack1")) Log.Info("Click");
 
-
 		if (!Network.IsOwner) return;
 		
 		
 		if (Input.Keyboard.Pressed("Q"))
 		{
-			Log.Info("Send msg to server");
-			ScreenLoggerComp.Print("aAaa");
-			NetMsgComp.SendRequestToServer();
+			//Log.Info("Send msg to server");
+			//ScreenLoggerComp.Print("aAaa");
+			//NetMsgComp.SendRequestToServer();
 		}
 		if ( Input.Keyboard.Pressed( "R" ) )
 		{
@@ -90,6 +123,11 @@ public sealed class CustomInputComp : Component, IPlayer
 			DoSphereTraceMulti();
 		}
 
+		if ( Input.Keyboard.Pressed( "V" ) )
+		{
+			
+			SkinnedModelRenderer.SceneModel?.SetAnimParameter( "b_attack", true );
+		}
 
 		if ( Input.Keyboard.Pressed( "F" ) )
 		{
@@ -101,17 +139,42 @@ public sealed class CustomInputComp : Component, IPlayer
 
 		if ( Input.Keyboard.Pressed( "G" ) )
 		{
-			NetMsgComp.RpcSendToServerNew();
+			
+			SkinnedModelRenderer.SceneModel?.SetAnimParameter( "b_reload", true );
+			
+			//NetMsgComp.RpcSendToServerNew();
 		}
 
 		if ( Input.Keyboard.Pressed( "H" ) )
 		{
-			NetMsgComp.RpcSendToProxy();
+			SkinnedModelRenderer.SceneModel?.SetAnimParameter( "b_deploy", true );
+			//NetMsgComp.RpcSendToProxy();
 		}
 		
 		if ( Input.Keyboard.Pressed( "J" ) )
 		{
-			NetMsgComp.RpcSendToOnlyHOST();
+			
+			//SkinnedModelRenderer.SceneModel.SetAnimParameter( "holdtype", 0 );
+			SkinnedModelRenderer.SceneModel.SetAnimParameter(
+				"special_movement_states",
+				(int)SpecialMoveStyle.Slide
+			);
+
+			//HoldTypes.
+
+			//SkinnedModelRenderer.SceneModel?.SetAnimParameter( "b_panic", true );
+			//NetMsgComp.RpcSendToOnlyHOST();
+		}
+		
+		if ( Input.Keyboard.Pressed( "K" ) )
+		{
+			
+			SkinnedModelRenderer.SceneModel.SetAnimParameter( "holdtype", 0 );
+			SkinnedModelRenderer.SceneModel.SetAnimParameter(
+				"special_movement_states",
+				(int)SpecialMoveStyle.Roll
+			);
+			//NetMsgComp.RpcSendToOnlyHOST();
 		}
 		if ( Input.Keyboard.Pressed( "I" ) )
 		{
